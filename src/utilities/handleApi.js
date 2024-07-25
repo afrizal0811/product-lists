@@ -8,7 +8,7 @@ export const getApi = async (URL) => {
       return response.data
     })
     .catch((e) => {
-      return e.response.data
+      return e.response
     })
   return url
 }

@@ -17,7 +17,7 @@ const Login = () => {
     } else {
       navigate('/')
     }
-  }, [validation])
+  }, [navigate])
 
   const onFinish = async (values) => {
     const fetchData = async () => {
