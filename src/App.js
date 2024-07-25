@@ -1,5 +1,5 @@
 import './App.css'
-import Login from './utilities/pages/login/Login'
+import Login from './pages/login/Login'
 function App() {
   return (
     <div className='App'>
