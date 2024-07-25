@@ -26,7 +26,6 @@ export const postApi = async (URL, params) => {
 }
 
 export const apiValidation = (result) => {
-console.log('result :', result);
   if (result.status >= 400) {
     return result.data.message
   } else {

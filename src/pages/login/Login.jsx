@@ -1,25 +1,43 @@
 import { Form } from 'antd'
-import React, { useState } from 'react'
-import { Input, Button, Password } from '../../components/antd'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { Button, Input, Password } from '../../components/antd'
 import { apiValidation, postApi } from '../../utilities/handleApi'
+import { checkValidToken } from '../../utilities/localStorages'
+import { StyledCard } from './StyledComponents'
+
 const Login = () => {
+  const navigate = useNavigate()
   const [validation, setValidation] = useState()
   const [form] = Form.useForm()
 
-  const onFinish = (values) => {
-  console.log('values :', values);
+  useEffect(() => {
+    if (checkValidToken()) {
+      navigate('/products')
+    } else {
+      navigate('/')
+    }
+  }, [validation])
+
+  const onFinish = async (values) => {
     const fetchData = async () => {
       const url = `${process.env.REACT_APP_BASE_URL}/user/login`
       const response = await postApi(url, values)
       const api = apiValidation(response)
       if (api) setValidation(api)
     }
-    fetchData()
+    await fetchData()
+    if (checkValidToken()) {
+      navigate('/products')
+    }
   }
 
   return (
-    <div>
-      {validation ? 'Gagal' : 'Berhasil'}
+    <StyledCard
+      title='Login User'
+      bordered={true}
+    >
+      {/* {validation ? 'Gagal' : 'Berhasil'} */}
       <Form
         autoComplete='off'
         form={form}
@@ -55,10 +73,10 @@ const Login = () => {
           type='primary'
           htmlType='submit'
         >
-          Save
+          Login
         </Button>
       </Form>
-    </div>
+    </StyledCard>
   )
 }
 
