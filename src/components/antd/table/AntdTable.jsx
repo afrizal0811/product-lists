@@ -1,7 +1,7 @@
 import { Table } from 'antd'
 import React from 'react'
 const AntdTable = (props) => {
-  const { columns, data, pagination, className, loading } = props
+  const { columns, data, pagination, className, loading, bordered} = props
   return (
     <Table
       className={className}
@@ -9,6 +9,7 @@ const AntdTable = (props) => {
       dataSource={data}
       pagination={pagination}
       loading={loading}
+      bordered={bordered}
     />
   )
 }

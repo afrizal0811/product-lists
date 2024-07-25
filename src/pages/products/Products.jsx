@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Table } from '../../components/antd'
 import { getApi } from '../../utilities/handleApi'
 import { columns } from './tableConfig'
+import { StyledProductsWrapper } from './StyledComponents'
 const Products = () => {
   const navigate = useNavigate()
   const [data, setData] = useState([])
@@ -23,14 +24,15 @@ const Products = () => {
   }
 
   return (
-    <div>
+    <StyledProductsWrapper>
       <Table
         columns={columns(handleDetail)}
         data={data}
         pagination={true}
         loading={loading}
+        bordered={true}
       />
-    </div>
+    </StyledProductsWrapper>
   )
 }
 
